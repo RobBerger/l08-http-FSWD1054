@@ -25,6 +25,8 @@ export const ContactProvider = (props) => {
   }
 
   function deleteContact(id) {
+    axios.delete(`http://localhost:3001/contacts/${id}`)
+      .then(refreshContacts)
   }
 
   function addContact(contact) {
