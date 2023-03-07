@@ -21,7 +21,10 @@ export const ContactProvider = (props) => {
   }
 
   function getContact(id) {
-    return contacts.find(contact => contact.id === parseInt(id))
+    return axios.get(`http://localhost:3001/contacts/${id}`)
+      .then(response =>
+        new Promise((resolve) => resolve(response.data))
+      )
   }
 
   function deleteContact(id) {
