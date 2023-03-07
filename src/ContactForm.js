@@ -1,38 +1,56 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
+import Image from "react-bootstrap/Image";
 import Button from 'react-bootstrap/Button'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ContactContext } from './ContactContext'
-import { Image } from 'react-bootstrap';
 
 function ContactForm() {
+  let params = useParams()
   let [ contact, setContact ] = useState({
+    id: params.contactId,
     name: "",
     email: "",
     phone: "",
     avatar: ""
   })
 
-  let { addContact } = useContext(ContactContext)
+  let { getContact, addContact, updateContact } = useContext(ContactContext)
   let navigate = useNavigate()
-  let { name, email, phone, avatar } = contact
+  let { id, name, email, phone, avatar } = contact
+
+  useEffect(() => {
+    if (id === undefined) return
+    async function fetch() {
+      await getContact(id)
+        .then((contact) => setContact(contact))
+    }
+    fetch()
+  }, [id])
 
   function handleChange(event) {
     setContact((preValue) => {
       return { ...preValue, [event.target.name]: event.target.value }})
   }
 
+  function addOrUpdate() {
+    if (id === undefined) {
+      return addContact(contact)
+    } else {
+      return updateContact(contact)
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
-    addContact(contact)
-      .then((contact) =>
-        navigate(`/contacts/${contact.id}`)
-      )
+    addOrUpdate().then((contact) =>
+      navigate(`/contacts/${contact.id}`)
+    )
   }
 
   function getAvatar() {
     try {
-      return require(`../node_modules/fake-avatars/avatars/png/${avatar}`)
+      return require(`../node_modules/fake-avatars/avatars/${avatar}`)
     } catch {
       return "https://via.placeholder.com/256"
     }

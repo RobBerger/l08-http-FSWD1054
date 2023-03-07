@@ -41,6 +41,11 @@ export const ContactProvider = (props) => {
   }
 
   function updateContact(contact) {
+    return axios.put(`http://localhost:3001/contacts/${contact.id}`, contact)
+    .then(response => {
+      refreshContacts()
+      return new Promise((resolve) => resolve(response.data))
+    })
   }
 
   return (
