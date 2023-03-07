@@ -1,6 +1,6 @@
-const { faker } = require('@faker-js/faker')
+import { faker } from '@faker-js/faker'
 
-module.exports = () => {
+export default () => {
   faker.seed(1234567890)
   let data = { contacts: [] }
   for (let i=0; i < 10; i++) {

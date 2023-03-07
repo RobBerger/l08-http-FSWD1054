@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from "react-router-dom";
 import { ContactContext } from './ContactContext'
+import { Image } from 'react-bootstrap';
 
 function ContactForm() {
   let [ contact, setContact ] = useState({
@@ -31,7 +32,7 @@ function ContactForm() {
 
   function getAvatar() {
     try {
-      return require(`../node_modules/fake-avatars/avatars/${avatar}`)
+      return require(`../node_modules/fake-avatars/avatars/png/${avatar}`)
     } catch {
       return "https://via.placeholder.com/256"
     }

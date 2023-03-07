@@ -34,7 +34,7 @@ function Contact(props) {
     let { id, name, email, phone, avatar } = contact
     return (
       <Card className="align-self-start w-25">
-        <Card.Img variant="top" src={require(`../node_modules/fake-avatars/avatars/${avatar}`).default} />
+        <Card.Img variant="top" src={require(`../node_modules/fake-avatars/avatars/png/${avatar}`).default} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{email}</Card.Subtitle>
