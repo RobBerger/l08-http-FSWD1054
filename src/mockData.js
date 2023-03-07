@@ -10,7 +10,7 @@ module.exports = () => {
       id: i,
       name: `${firstName} ${lastName}`,
       email: faker.internet.exampleEmail(firstName, lastName),
-      phone: faker.phone.phone.number(),
+      phone: faker.phone.number(),
       avatar: `${i}.png`
     })
   }
