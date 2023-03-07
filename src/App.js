@@ -14,6 +14,7 @@ function App() {
           <Route path="contacts" element={<ContactList />} >
             <Route index element={<p>Select a contact for more details</p>}/>
             <Route path="new" element={<ContactForm />} />
+            <Route path=":contactId/edit" element={<ContactForm />} />
             <Route path=":contactId" element={<Contact />} />
             <Route path="*" element={<h1>Contact Not Found</h1>} />
           </Route>

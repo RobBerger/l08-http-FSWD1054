@@ -41,6 +41,7 @@ function Contact(props) {
           <Card.Text>
             <strong>Phone:</strong> <span>{phone}</span>
           </Card.Text>
+          <Link to={`/contacts/${id}/edit`} className="btn btn-primary mx-3">Edit</Link>
           <Button variant="danger" onClick={handleDeleteContact.bind(this, id)}>Delete</Button>
         </Card.Body>
       </Card>
