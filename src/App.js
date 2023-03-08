@@ -6,7 +6,7 @@ import Contact from './Contact'
 import ContactForm from './ContactForm';
 
 function App() {
-  return (
+return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
